@@ -1,0 +1,13 @@
+ManifestFileVersion: 0
+CRC: 51827455
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: adolf.assetbundle
+      Dependencies: {}
+    Info_1:
+      Name: background.assetbundle
+      Dependencies: {}
+    Info_2:
+      Name: rina.assetbundle
+      Dependencies: {}

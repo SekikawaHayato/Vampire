@@ -1,0 +1,30 @@
+ManifestFileVersion: 0
+CRC: 3273342511
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: bc8e6056963290e27e15b02728523819
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 4df8c69f2c8a6ad9e3cbf82bb83e4dc3
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Resources/Adolf/Adolf_FD_Angry.png
+- Assets/Resources/Adolf/Adolf_PC_Angry.png
+- Assets/Resources/Adolf/Adolf_FD_Smile.png
+- Assets/Resources/Adolf/Adolf_FD_Origin.png
+- Assets/Resources/Adolf/Adolf_PC_Smile.png
+- Assets/Resources/Adolf/Adolf_PC_Surprised.png
+- Assets/Resources/Adolf/Adolf_PC_LittleAngry.png
+- Assets/Resources/Adolf/Adolf_PC_Embarrassment.png
+- Assets/Resources/Adolf/Adolf_FD_Embarrassment.png
+- Assets/Resources/Adolf/Adolf_PC_Original.png
+- Assets/Resources/Adolf/Adolf_FD_Surprised.png
+- Assets/Resources/Adolf/Adolf_FD_BitterSmile.png
+Dependencies: []
