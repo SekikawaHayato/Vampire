@@ -1,24 +1,24 @@
-﻿<Properties StartupConfiguration="{138040FB-11AB-5062-09CB-8C7343059948}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Scenario/ScenarioManager.cs">
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Scenario/CharacterIndicator.cs">
     <Files>
-      <File FileName="Assets/Scripts/Scenario/LogText.cs" Line="17" Column="1" />
-      <File FileName="Assets/Scripts/Scenario/CharacterIndicator.cs" />
-      <File FileName="Assets/Scripts/Scenario/BackgroundChanger.cs" />
-      <File FileName="Assets/Scripts/Common/AssetBundleLoader.cs" />
-      <File FileName="Assets/Scripts/Player/IPlayerInputEventProvider.cs" />
-      <File FileName="Assets/CSV/CharacterName.csv" />
-      <File FileName="Assets/Scripts/Scenario/LogGenerator.cs" Line="30" Column="13" />
-      <File FileName="Assets/Scripts/Scenario/ScenarioLoader.cs" Line="15" Column="36" NotebookId="1" />
-      <File FileName="Assets/Scripts/Scenario/ScenarioInputEventProviderImpl.cs" NotebookId="1" />
-      <File FileName="Assets/Scripts/Scenario/ScenarioIndicator.cs" NotebookId="1" />
-      <File FileName="Assets/CSV/BackgroundImage.csv" NotebookId="1" />
-      <File FileName="Assets/CSV/test.csv" Line="3" Column="40" NotebookId="1" />
-      <File FileName="Assets/Scripts/Scenario/ScenarioManager.cs" Line="32" Column="51" NotebookId="1" />
+      <File FileName="Assets/CSV/test.csv" Line="7" Column="17" IsPinned="True" />
+      <File FileName="Assets/Scripts/Scenario/ScenarioInputEventProviderImpl.cs" Line="5" Column="13" />
+      <File FileName="Assets/Scripts/Scenario/ScenarioIndicator.cs" Line="39" Column="13" />
+      <File FileName="Assets/CSV/BackgroundImage.csv" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Scenario/ScenarioManager.cs" Line="211" Column="30" />
+      <File FileName="Assets/Scripts/Common/SingletonMonoBehaviour.cs" Line="12" Column="34" />
+      <File FileName="Assets/Scripts/Scenario/LogGenerator.cs" Line="22" Column="36" />
+      <File FileName="Assets/Scripts/Scenario/CharacterIndicator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Scenario/ScenarioLoader.cs" Line="22" Column="55" NotebookId="1" />
+      <File FileName="Assets/Scripts/Common/CSVReader.cs" Line="21" Column="6" NotebookId="1" />
+      <File FileName="Assets/Scripts/Scenario/Skip.cs" Line="37" Column="52" NotebookId="1" />
+      <File FileName="Assets/Scripts/SceneLoader.cs" Line="41" Column="1" NotebookId="1" />
+      <File FileName="Assets/CSV/Scenario_01.csv" Line="57" Column="58" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="99c3a72f-2f77-4e1f-b7ae-a2a0aecfb720" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="e35c397f-b0bf-497c-b119-f9bc03c1619a" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/sekikawahayato/Documents/programming/Unity/Vampire/Assets/CSV/Scenario_1.csv" relfile="Assets/CSV/Scenario_1.csv" line="19" column="1" />

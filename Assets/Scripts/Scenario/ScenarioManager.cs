@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using ATest;
 
 namespace Vampire.Scenario
 {
     public class ScenarioManager: MonoBehaviour
     {
+        A test;
+
         #region UniRx
         public IReadOnlyReactiveProperty<string> MessageText => _messageText;
         public IObservable<string> NameText => _nameText;
@@ -77,8 +80,16 @@ namespace Vampire.Scenario
             set { _characterName = value; }
         }
 
+        void InitTest()
+        {
+            test = new A(5,1);
+
+        }
+
         private void Start()
         {
+            InitTest();
+            print(test.GetA());
             // コンポーネントの取得
             TryGetComponent<BackgroundChanger>(out _backgroundChanger);
             if (TryGetComponent<IScenarioInputEventProvider>(out _inputEventProvider))
@@ -177,7 +188,7 @@ namespace Vampire.Scenario
                             _rinaActive.OnNext(true);
                             break;
                         case "Inactive":
-                            _rinaActive.OnNext(true);
+                            _rinaActive.OnNext(false);
                             break;
                     }
                     switch (_scenarios[_currentStep][adolfActiveIndex])
@@ -186,7 +197,7 @@ namespace Vampire.Scenario
                             _adolfActive.OnNext(true);
                             break;
                         case "Inactive":
-                            _adolfActive.OnNext(true);
+                            _adolfActive.OnNext(false);
                             break;
                     }
                     _previousLine = string.Empty;

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 610095040
+CRC: 3588100016
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0d6933d410cdbe1de0d7772f50bc41e9
+    Hash: 20a20570634de8e5f98e7d3bdc5811b1
   TypeTreeHash:
     serializedVersion: 2
     Hash: 4df8c69f2c8a6ad9e3cbf82bb83e4dc3
@@ -17,6 +17,7 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Resources/Background/RyokanRoom.jpg
 - Assets/Resources/Background/Park.jpg
+- Assets/Resources/Background/Home.jpg
 - Assets/Resources/Background/RinaRoom.jpg
 - Assets/Resources/Background/ShoppingStreet.jpg
 Dependencies: []

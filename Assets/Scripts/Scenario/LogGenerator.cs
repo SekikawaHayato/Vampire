@@ -9,6 +9,7 @@ namespace Vampire.Scenario
     public class LogGenerator : MonoBehaviour
     {
         [SerializeField] Button _logButton;
+        [SerializeField] Button _backButton;
         [SerializeField] GameObject _logPrefab;
         [SerializeField] Transform _parent;
         [SerializeField] ScenarioManager _scenarioManager;
@@ -18,6 +19,10 @@ namespace Vampire.Scenario
         {
             _logButton.onClick.AsObservable()
                 .Subscribe(t => LogButton())
+                .AddTo(gameObject);
+
+            _backButton.onClick.AsObservable()
+                .Subscribe(t => BackButton())
                 .AddTo(gameObject);
         }
 
@@ -38,6 +43,11 @@ namespace Vampire.Scenario
             }
 
             _logPanel.SetActive(true);
+        }
+
+        void BackButton()
+        {
+            _logPanel.SetActive(false);
         }
     }
 }

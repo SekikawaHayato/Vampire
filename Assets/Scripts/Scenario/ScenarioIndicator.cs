@@ -13,7 +13,10 @@ namespace Vampire.Scenario
         [SerializeField] Text _nameText;
 
         ScenarioManager _scenarioManager;
-        
+        /// <summary>
+        ///
+        /// 
+        /// </summary>
         private void Awake()
         {
             // コンポーネントの取得
@@ -32,6 +35,10 @@ namespace Vampire.Scenario
         }
 
         // テキストをUIに表示
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
         void SetText(string text)
         {
             _messageWindowText.text = text;

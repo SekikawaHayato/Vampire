@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maskImage: {fileID: 3285123591749075121}
-  parent: {fileID: 0}
+  parent: {fileID: 5312205625955462666}
   maxScale: 24
   scaleTime: 1.2
 --- !u!1 &3285123591396899058
@@ -231,7 +231,6 @@ GameObject:
   - component: {fileID: 3285123591396899062}
   - component: {fileID: 3285123591396899063}
   - component: {fileID: 3285123591396899060}
-  - component: {fileID: 3285123591396899061}
   m_Layer: 5
   m_Name: LoadingCanvas
   m_TagString: Untagged
@@ -320,22 +319,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3285123591396899061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3285123591396899058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5dc18a52c0e64c96b169006102ed659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maskImage: {fileID: 0}
-  parent: {fileID: 0}
-  maxScale: 0
-  scaleTime: 0
 --- !u!1 &3285123591749075134
 GameObject:
   m_ObjectHideFlags: 0
