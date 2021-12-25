@@ -27,7 +27,7 @@ namespace Vampire.Scenario
         // Start is called before the first frame update
         void Start()
         {
-            menuButton.OnClickAsObservable()
+            menuButton.onClick.AsObservable()
                 .Where(_=>canMove)
                 .Select(_=>1)
                 .Scan((acc,current)=>acc+current)

@@ -4,14 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
-using ATest;
 
 namespace Vampire.Scenario
 {
     public class ScenarioManager: MonoBehaviour
     {
-        A test;
-
         #region UniRx
         public IReadOnlyReactiveProperty<string> MessageText => _messageText;
         public IObservable<string> NameText => _nameText;
@@ -80,16 +77,8 @@ namespace Vampire.Scenario
             set { _characterName = value; }
         }
 
-        void InitTest()
-        {
-            test = new A(5,1);
-
-        }
-
         private void Start()
         {
-            InitTest();
-            print(test.GetA());
             // コンポーネントの取得
             TryGetComponent<BackgroundChanger>(out _backgroundChanger);
             if (TryGetComponent<IScenarioInputEventProvider>(out _inputEventProvider))
@@ -209,6 +198,7 @@ namespace Vampire.Scenario
                     break;
                 // 画面遷移
                 case "Scene":
+                    SceneLoader.Instance.NextScene("Main");
                     break;
             }
             _currentStep++;

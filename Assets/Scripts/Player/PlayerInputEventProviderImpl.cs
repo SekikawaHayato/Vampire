@@ -44,7 +44,7 @@ namespace Vampire.Players.InputImpls
         // Update is called once per frame
         void Update()
         {
-            _move.SetValueAndForceNotify(new Vector3(joystick.Horizontal,0,joystick.Vertical));
+            _move.SetValueAndForceNotify(new Vector3(joystick.Horizontal,joystick.Vertical,0));
             //Input.GetAxis("Horizontal"),0,Input.GetAxis("Vertical")));
         }
     }

@@ -1,19 +1,32 @@
-﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Scenario/CharacterIndicator.cs">
+﻿<Properties StartupConfiguration="{138040FB-11AB-5062-09CB-8C7343059948}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Shader/Mask.shader">
     <Files>
       <File FileName="Assets/CSV/test.csv" Line="7" Column="17" IsPinned="True" />
-      <File FileName="Assets/Scripts/Scenario/ScenarioInputEventProviderImpl.cs" Line="5" Column="13" />
+      <File FileName="Assets/CSV/BackgroundImage.csv" Line="1" Column="1" IsPinned="True" />
+      <File FileName="Assets/Scripts/Scenario/Test.cs" Line="22" Column="6" IsPinned="True" />
+      <File FileName="Assets/Scripts/AI/AIMove.cs" Line="13" Column="1" IsPinned="True" />
+      <File FileName="Assets/Scripts/Scenario/ScenarioInputEventProviderImpl.cs" Line="30" Column="20" />
       <File FileName="Assets/Scripts/Scenario/ScenarioIndicator.cs" Line="39" Column="13" />
-      <File FileName="Assets/CSV/BackgroundImage.csv" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Scenario/ScenarioManager.cs" Line="211" Column="30" />
+      <File FileName="Assets/Scripts/Scenario/ScenarioManager.cs" Line="6" Column="22" />
       <File FileName="Assets/Scripts/Common/SingletonMonoBehaviour.cs" Line="12" Column="34" />
       <File FileName="Assets/Scripts/Scenario/LogGenerator.cs" Line="22" Column="36" />
       <File FileName="Assets/Scripts/Scenario/CharacterIndicator.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Player/IPlayerInputEventProvider.cs" Line="10" Column="47" />
+      <File FileName="Assets/Scripts/AI/AIData.cs" Line="19" Column="18" />
+      <File FileName="Assets/Scripts/Gimmick/Wind.cs" Line="14" Column="41" />
+      <File FileName="Assets/Scripts/Scenario/MenuUIManager.cs" Line="32" Column="30" />
+      <File FileName="Assets/Shader/Mask.shader" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AI/AICore.cs" Line="61" Column="22" NotebookId="1" />
+      <File FileName="Assets/Scripts/Player/PlayerMove.cs" Line="4" Column="13" NotebookId="1" />
       <File FileName="Assets/Scripts/Scenario/ScenarioLoader.cs" Line="22" Column="55" NotebookId="1" />
-      <File FileName="Assets/Scripts/Common/CSVReader.cs" Line="21" Column="6" NotebookId="1" />
-      <File FileName="Assets/Scripts/Scenario/Skip.cs" Line="37" Column="52" NotebookId="1" />
-      <File FileName="Assets/Scripts/SceneLoader.cs" Line="41" Column="1" NotebookId="1" />
-      <File FileName="Assets/CSV/Scenario_01.csv" Line="57" Column="58" NotebookId="1" />
+      <File FileName="Assets/Scripts/AI/IAIProvider.cs" Line="13" Column="11" NotebookId="1" />
+      <File FileName="Assets/Scripts/Player/PlayerCore.cs" Line="43" Column="33" NotebookId="1" />
+      <File FileName="Assets/Scripts/Player/PlayerInputEventProviderImpl.cs" Line="42" Column="10" NotebookId="1" />
+      <File FileName="Assets/Scripts/AI/CharaAnimation.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/AI/AIAnimation.cs" Line="16" Column="10" NotebookId="1" />
+      <File FileName="Assets/Scripts/Gimmick/WindGenerator.cs" Line="14" Column="10" NotebookId="1" />
+      <File FileName="Assets/Scripts/SceneLoader.cs" Line="50" Column="1" NotebookId="1" />
+      <File FileName="Assets/Scripts/Title/TitleManager.cs" Line="30" Column="10" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

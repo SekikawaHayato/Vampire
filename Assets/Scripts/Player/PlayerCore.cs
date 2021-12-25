@@ -39,28 +39,29 @@ namespace Vampire.Players{
         }
 
         Vector3 GetMoveVector(){
-            float x = _inputEventProvider.MoveDirection.Value.x;
-            float y = _inputEventProvider.MoveDirection.Value.z;
-            if(x > _moveLimit)
-            {
-                return Vector3.right;
-            }
-            else if(x < -_moveLimit)
-            {
-                return Vector3.left;
-            }
-            else if(y > _moveLimit)
-            {
-                return Vector3.up;
-            }
-            else if(y < -_moveLimit)
-            {
-                return Vector3.down;
-            }
-            else
-            {
-                return Vector3.zero;
-            }
+            return _inputEventProvider.MoveDirection.Value.magnitude<_moveLimit? Vector3.zero :_inputEventProvider.MoveDirection.Value;
+            //float y = _inputEventProvider.MoveDirection.Value.z;
+            //return 0? 
+            //if (x > _moveLimit)
+            //{
+            //    return Vector3.right;
+            //}
+            //else if (x < -_moveLimit)
+            //{
+            //    return Vector3.left;
+            //}
+            //else if (y > _moveLimit)
+            //{
+            //    return Vector3.up;
+            //}
+            //else if (y < -_moveLimit)
+            //{
+            //    return Vector3.down;
+            //}
+            //else
+            //{
+            //    return Vector3.zero;
+            //}
         }
     }
 }
