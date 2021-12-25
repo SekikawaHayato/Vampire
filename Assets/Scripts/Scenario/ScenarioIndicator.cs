@@ -3,29 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
-using System;
 
 namespace Vampire.Scenario
 {
     public class ScenarioIndicator : MonoBehaviour
     {
+        // テキストを表示するUI
+        [SerializeField] Text _messageWindowText;
+        [SerializeField] Text _nameText;
 
-        [SerializeField]
-        Text messageWindowText;
-        [SerializeField]
-        Text nameText;
-
-        ScenarioManager scenarioManager;
-
+        ScenarioManager _scenarioManager;
+        
         private void Awake()
         {
-            if(TryGetComponent<ScenarioManager>(out scenarioManager))
+            // コンポーネントの取得
+            if(TryGetComponent<ScenarioManager>(out _scenarioManager))
             {
-                scenarioManager.MessageText.Subscribe(t =>
+                // イベントの追加
+                _scenarioManager.MessageText.Subscribe(t =>
                 {
                     SetText(t);
                 });
-                scenarioManager.NameText.Subscribe(t =>
+                _scenarioManager.NameText.Subscribe(t =>
                 {
                     SetName(t);
                 });
@@ -35,12 +34,13 @@ namespace Vampire.Scenario
         // テキストをUIに表示
         void SetText(string text)
         {
-            messageWindowText.text = text;
+            _messageWindowText.text = text;
         }
 
+        // 名前をUIに表示
         void SetName(string name)
         {
-            nameText.text = name;
+            _nameText.text = name;
         }
 
     }

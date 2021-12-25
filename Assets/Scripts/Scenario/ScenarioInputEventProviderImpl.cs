@@ -1,20 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UniRx;
 using UniRx.Triggers;
-using System;
 
 namespace Vampire.Scenario
 {
     public class ScenarioInputEventProviderImpl : MonoBehaviour,IScenarioInputEventProvider
     {
-        #region
+        #region UniRx
         public IObservable<bool> IsClick => _isClickSubject;
+
+        // イベントの発行に利用するSubject
+        readonly Subject<bool> _isClickSubject=new Subject<bool>();
         #endregion
 
-        readonly Subject<bool> _isClickSubject=new Subject<bool>();
         // Start is called before the first frame update
         void Start()
         {

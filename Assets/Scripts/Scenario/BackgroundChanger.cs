@@ -1,43 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 
 namespace Vampire.Scenario
 {
     public class BackgroundChanger : MonoBehaviour
     {
-        [SerializeField]
-        float _fadeTime;
-        [SerializeField]
-        float _interval;
-        [SerializeField]
-        Image _fadePanel;
+        [SerializeField] float _fadeTime;
+        [SerializeField] float _interval;
+        [SerializeField] Image _fadePanel;
+        [SerializeField] Image _background;
+        [SerializeField] AssetBundleLoader _assetBundleLoader;
         Color _fadeColor;
-        [SerializeField]
-        Image _background;
-        Sprite useSprite;
-        [SerializeField]
-        AssetBundleLoader assetBundleLoader;
+        Sprite _useSprite;
 
         bool isComplete = true;
 
         // Start is called before the first frame update
         void Awake()
         {
-            assetBundleLoader.LoadAssets();
+            // 画像データを読み込む
+            _assetBundleLoader.LoadAssets();
             _fadeColor = _fadePanel.color;
         }
 
+        // 呼び出し用メソッド
         public void ChangeBackground(string imageName, Action action = null)
         {
             if (!isComplete) return;
-            if (imageName != "black") useSprite = assetBundleLoader.sprites[imageName];
+            if (imageName != "black") _useSprite = _assetBundleLoader.sprites[imageName];
             StartCoroutine(Change(action));
         }
 
+        // 背景を変更する処理
         IEnumerator Change(Action onFinished = null)
         {
             isComplete = false;
@@ -48,7 +46,7 @@ namespace Vampire.Scenario
                 _fadePanel.color = _fadeColor;
                 yield return null;
             }
-            _background.sprite = useSprite;
+            _background.sprite = _useSprite;
             yield return new WaitForSeconds(_interval);
             while (_fadeColor.a >= 0)
             {

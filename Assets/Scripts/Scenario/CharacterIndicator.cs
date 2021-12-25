@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,58 +9,59 @@ namespace Vampire.Scenario
 {
     public class CharacterIndicator : MonoBehaviour
     {
-        [SerializeField]
-        Image _rinaImage;
-        [SerializeField]
-        Image _AdolfImage;
-        [SerializeField]
-        AssetBundleLoader rinaAssetBundleLoader;
-        [SerializeField]
-        AssetBundleLoader adolfAssetBundleLoader;
+        [SerializeField] Image _rinaImage;
+        [SerializeField] Image _AdolfImage;
+        [SerializeField] AssetBundleLoader _rinaAssetBundleLoader;
+        [SerializeField] AssetBundleLoader _adolfAssetBundleLoader;
 
-        ScenarioManager scenarioManager;
+        ScenarioManager _scenarioManager;
 
 
         // Start is called before the first frame update
         void Awake()
         {
-            rinaAssetBundleLoader.LoadAssets();
-            adolfAssetBundleLoader.LoadAssets();
+            // 画像データを読み込む
+            _rinaAssetBundleLoader.LoadAssets();
+            _adolfAssetBundleLoader.LoadAssets();
 
-            if (TryGetComponent<ScenarioManager>(out scenarioManager))
+            // コンポーネントを取得
+            if (TryGetComponent<ScenarioManager>(out _scenarioManager))
             {
-                scenarioManager.RinaFace.Subscribe(t =>
+                // イベントの追加
+                _scenarioManager.RinaFace.Subscribe(t =>
                 {
                     RinaChanger(t);
                 });
 
-                scenarioManager.AdolfFace.Subscribe(t =>
+                _scenarioManager.AdolfFace.Subscribe(t =>
                 {
                     AdolfChanger(t);
                 });
 
-                scenarioManager.RinaActive.Subscribe(t =>
+                _scenarioManager.RinaActive.Subscribe(t =>
                 {
                     RinaActive(t);
                 });
 
-                scenarioManager.AdolfActive.Subscribe(t =>
+                _scenarioManager.AdolfActive.Subscribe(t =>
                 {
                     AdolfActive(t);
                 });
             }
         }
 
+        // 表情差分の表示
         void RinaChanger(string face)
         {
-            _rinaImage.sprite = rinaAssetBundleLoader.sprites["Rina_"+face];
+            _rinaImage.sprite = _rinaAssetBundleLoader.sprites["Rina_"+face];
         }
 
         void AdolfChanger(string face)
         {
-            _AdolfImage.sprite = adolfAssetBundleLoader.sprites["Adolf_"+face];
+            _AdolfImage.sprite = _adolfAssetBundleLoader.sprites["Adolf_"+face];
         }
 
+        // 表示非表示の切り替え
         void RinaActive(bool flag)
         {
             _rinaImage.gameObject.SetActive(flag);

@@ -1,54 +1,54 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UniRx;
-using System;
-using UniRx.Triggers;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 namespace Vampire.Scenario
 {
     public class ScenarioManager: MonoBehaviour
     {
-
-        // TODO: キャラ名の表示
-        // TODO: キャラの位置を変更
-        // TODO: キャラの画像を表示
-        List<string[]> scenarios;
-        Dictionary<string,string> characterName;
-
-        string[] lineText;
-
-        #region
+        #region UniRx
         public IReadOnlyReactiveProperty<string> MessageText => _messageText;
         public IObservable<string> NameText => _nameText;
         public IObservable<string> RinaFace => _rinaFace;
         public IObservable<string> AdolfFace => _adolfFace;
         public IObservable<bool> RinaActive => _rinaActive;
         public IObservable<bool> AdolfActive => _adolfActive;
-        #endregion
-
-        // イベント発行に利用するReactiveProperty
+        
+        // イベント発行に利用するReactivePropertyなど
         readonly ReactiveProperty<string> _messageText = new ReactiveProperty<string>();
         readonly Subject<string> _nameText = new Subject<string>();
         readonly Subject<string> _rinaFace = new Subject<string>();
         readonly Subject<string> _adolfFace = new Subject<string>();
         readonly Subject<bool> _rinaActive = new Subject<bool>();
         readonly Subject<bool> _adolfActive = new Subject<bool>();
+        #endregion
 
+        // シナリオデータ
+        List<string[]> _scenarios;
+        // 表示数キャラクターの名前
+        Dictionary<string, string> _characterName;
+
+        public List<string> logName;
+        public List<string> logMessage;
         
-        [SerializeField]
-        [Range(0.001f, 0.3f)]
-        float interval = 0.05f;
 
-        int currentStep = 0;
-        int currentLine = 0;
-        int lineCount = 0;
-        string previousLine = string.Empty;
-        string currentText = string.Empty;
-        int currentLineTextCount = 0;
-        float timeUntilDisplay = 0;
-        float timeElapsed = 1;
-        float lastUpdateCharacter = -1;
+        // シナリオの進行を制御する変数
+        [SerializeField] [Range(0.001f, 0.3f)] float interval = 0.05f;
+        int _currentStep = 0;
+        int _currentLine = 0;
+        int _lineCount = 0;
+        string _previousLine = string.Empty;
+        string _currentText = string.Empty;
+        int _currentLineTextCount = 0;
+        float _timeUntilDisplay = 0;
+        float _timeElapsed = 1;
+        float _lastUpdateCharacter = -1;
+        string[] _lineText;
+        bool _isDisplayComplete = true;
+        bool _isTransitionCpmplete = true;
 
         // 定数
         const int typeIndex = 0;
@@ -59,42 +59,44 @@ namespace Vampire.Scenario
         const int rinaActiveIndex = 5;
         const int adolfActiveIndex = 6;
 
-
-        bool isDisplayComplete = true;
-        bool isTransitionCpmplete = true;
-
         // InputEvent
         IScenarioInputEventProvider _inputEventProvider;
 
         BackgroundChanger _backgroundChanger;
 
+        // プロパティ
         public List<string[]> Scenarios
         {
-            get { return scenarios; }
-            set { scenarios = value; }
+            get { return _scenarios; }
+            set { _scenarios = value; }
         }
 
         public Dictionary<string,string> CharacterName
         {
-            get { return characterName; }
-            set { characterName = value; }
+            get { return _characterName; }
+            set { _characterName = value; }
         }
 
         private void Start()
         {
+            // コンポーネントの取得
             TryGetComponent<BackgroundChanger>(out _backgroundChanger);
             if (TryGetComponent<IScenarioInputEventProvider>(out _inputEventProvider))
             {
+                // クリックイベントの追加
                 _inputEventProvider.IsClick.Subscribe(_ => ClickEvent(_));
             }
 
             // テキストの更新処理を行う
             this.UpdateAsObservable()
-                .Where(_ => isTransitionCpmplete)
-                .Where(_ => !isDisplayComplete)
+                .Where(_ => _isTransitionCpmplete)
+                .Where(_ => !_isDisplayComplete)
                 .Subscribe(_ => {
                     UpdateText();
                 });
+
+            logName = new List<string>();
+            logMessage = new List<string>();
 
             SetNextStep();
         }
@@ -102,75 +104,74 @@ namespace Vampire.Scenario
         // テキストの更新
         void UpdateText()
         {
-            // セル内改行に対応する
-            /* １行表示完了したら一時変数に追加
-             * 一時変数をSetTextの最初に追加
-             * 行を表示し終わったら次の行があるかチェック
-             * テキスト更新処理で一時変数を初期化
-             */
-            
-            int displayCharacterCount = (int)(Mathf.Clamp01((Time.time - timeElapsed) / timeUntilDisplay) * currentLineTextCount);
-            if (displayCharacterCount != lastUpdateCharacter)
+            int displayCharacterCount = (int)(Mathf.Clamp01((Time.time - _timeElapsed) / _timeUntilDisplay) * _currentLineTextCount);
+            if (displayCharacterCount != _lastUpdateCharacter)
             {
-                _messageText.Value = previousLine + lineText[currentLine].Substring(0, displayCharacterCount);
-                lastUpdateCharacter = displayCharacterCount;
-                if(lastUpdateCharacter == currentLineTextCount) CheckDisplayComplete();
+                _messageText.Value = _previousLine + _lineText[_currentLine].Substring(0, displayCharacterCount);
+                _lastUpdateCharacter = displayCharacterCount;
+                if(_lastUpdateCharacter == _currentLineTextCount) CheckDisplayComplete();
             }
         }
 
+        // テキストの表示が完了しているか
         void CheckDisplayComplete()
         {
-            if (currentLine != lineCount)
+            if (_currentLine != _lineCount)
             {
-                previousLine += lineText[currentLine] + "\n";
+                _previousLine += _lineText[_currentLine] + "\n";
                 SetNextLine();
             }
             else
             {
-                isDisplayComplete = true;
+                logMessage.Add(_messageText.Value);
+                _isDisplayComplete = true;
             }
         }
 
         // クリックイベント
         void ClickEvent(bool check)
         {
-            if (!isTransitionCpmplete) return;
-            if (!isDisplayComplete)
+            if (!_isTransitionCpmplete) return;
+            if (!_isDisplayComplete)
             {
                 // 文字を最後まで表示する
-                while (currentLine < lineCount)
+                while (_currentLine < _lineCount)
                 {
-                    previousLine += lineText[currentLine] + "\n";
-                    currentLine++;
+                    _previousLine += _lineText[_currentLine] + "\n";
+                    _currentLine++;
                 }
-                _messageText.Value = previousLine + lineText[currentLine];
-                isDisplayComplete = true;
+                _messageText.Value = _previousLine + _lineText[_currentLine];
+                logMessage.Add(_messageText.Value);
+                _isDisplayComplete = true;
             }
-            else if (currentStep < scenarios.Count)
+            else if (_currentStep < _scenarios.Count)
             {
                 SetNextStep();
             }
         }
 
-
-
         // 次の行を表示する
         void SetNextStep()
         {
-            switch (scenarios[currentStep][typeIndex])
+            switch (_scenarios[_currentStep][typeIndex])
             {
+                // 背景の変更
                 case "Background":
-                    isTransitionCpmplete = false;
-                    _backgroundChanger.ChangeBackground(scenarios[currentStep][optionIndex], BackgroundCallBack);
+                    _isTransitionCpmplete = false;
+                    _backgroundChanger.ChangeBackground(_scenarios[_currentStep][optionIndex], BackgroundCallBack);
+                    _messageText.Value = null;
+                    _nameText.OnNext(null);
                     break;
+                // テキストを表示
                 case "Words":
                     // 表示するテキストを読み込む
-                    currentText = scenarios[currentStep][messageIndex];
+                    _currentText = _scenarios[_currentStep][messageIndex];
                     // 名前を表示する
-                    _nameText.OnNext(characterName[scenarios[currentStep][optionIndex]]);
-                    if (scenarios[currentStep][rinaFaceIndex] != "") _rinaFace.OnNext(scenarios[currentStep][rinaFaceIndex]);
-                    if (scenarios[currentStep][adolfFaceIndex] != "") _adolfFace.OnNext(scenarios[currentStep][adolfFaceIndex]);
-                    switch (scenarios[currentStep][rinaActiveIndex])
+                    _nameText.OnNext(_characterName[_scenarios[_currentStep][optionIndex]]);
+                    logName.Add(_characterName[_scenarios[_currentStep][optionIndex]]);
+                    if (_scenarios[_currentStep][rinaFaceIndex] != "") _rinaFace.OnNext(_scenarios[_currentStep][rinaFaceIndex]);
+                    if (_scenarios[_currentStep][adolfFaceIndex] != "") _adolfFace.OnNext(_scenarios[_currentStep][adolfFaceIndex]);
+                    switch (_scenarios[_currentStep][rinaActiveIndex])
                     {
                         case "Active":
                             _rinaActive.OnNext(true);
@@ -179,7 +180,7 @@ namespace Vampire.Scenario
                             _rinaActive.OnNext(true);
                             break;
                     }
-                    switch (scenarios[currentStep][adolfActiveIndex])
+                    switch (_scenarios[_currentStep][adolfActiveIndex])
                     {
                         case "Active":
                             _adolfActive.OnNext(true);
@@ -188,33 +189,36 @@ namespace Vampire.Scenario
                             _adolfActive.OnNext(true);
                             break;
                     }
-                    previousLine = string.Empty;
-                    lineText = currentText.Split('\\');
-                    lineCount = lineText.Length - 1;
-                    currentLine = -1;
+                    _previousLine = string.Empty;
+                    _lineText = _currentText.Split('\\');
+                    _lineCount = _lineText.Length - 1;
+                    _currentLine = -1;
                     SetNextLine();
-                    isDisplayComplete = false;
+                    _isDisplayComplete = false;
                     break;
+                // 画面遷移
                 case "Scene":
                     break;
             }
-            currentStep++;
+            _currentStep++;
         }
 
+        // 背景変更のコールバック
         void BackgroundCallBack()
         {
-            isTransitionCpmplete = true;
+            _isTransitionCpmplete = true;
             SetNextStep();
         }
 
+        // 次の行に移る
         void SetNextLine()
         {
-            currentLine++;
-            currentLineTextCount = lineText[currentLine].Length;
-            timeUntilDisplay = currentLineTextCount * interval;
-            timeElapsed = Time.time;
+            _currentLine++;
+            _currentLineTextCount = _lineText[_currentLine].Length;
+            _timeUntilDisplay = _currentLineTextCount * interval;
+            _timeElapsed = Time.time;
 
-            lastUpdateCharacter = -1;
+            _lastUpdateCharacter = -1;
         }
     }
 }

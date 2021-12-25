@@ -60,7 +60,7 @@
     <Compile Include="Assets/Scripts/Scenario/ScenarioManager.cs" />
     <Compile Include="Assets/Joystick Pack/Scripts/Joysticks/FixedJoystick.cs" />
     <Compile Include="Assets/Joystick Pack/Scripts/Joysticks/VariableJoystick.cs" />
-    <Compile Include="Assets/Scripts/Scenario/CSVReader.cs" />
+    <Compile Include="Assets/Scripts/Common/CSVReader.cs" />
     <Compile Include="Assets/Scripts/Scenario/IScenarioInputEventProvider.cs" />
     <Compile Include="Assets/Scripts/Player/IPlayerInputEventProvider.cs" />
     <Compile Include="Assets/Scripts/Scenario/MenuUIManager.cs" />
@@ -70,15 +70,17 @@
     <Compile Include="Assets/Joystick Pack/Scripts/Base/Joystick.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerMove.cs" />
     <Compile Include="Assets/Joystick Pack/Examples/JoystickSetterExample.cs" />
+    <Compile Include="Assets/Scripts/Scenario/ScenarioIndicator.cs" />
     <Compile Include="Assets/Scripts/Common/SingletonMonoBehaviour.cs" />
     <Compile Include="Assets/Scripts/Player/PlayerCore.cs" />
     <Compile Include="Assets/Joystick Pack/Scripts/Joysticks/FloatingJoystick.cs" />
     <Compile Include="Assets/Scripts/Scenario/CharacterIndicator.cs" />
     <Compile Include="Assets/Scripts/Scenario/ScenarioLoader.cs" />
     <Compile Include="Assets/Scripts/Scenario/ScenarioInputEventProviderImpl.cs" />
-    <Compile Include="Assets/Scripts/Common/AssetBundleLoader.cs" />
-    <Compile Include="Assets/Scripts/Scenario/ScenarioIndicator.cs" />
     <Compile Include="Assets/Scripts/Scenario/BackgroundChanger.cs" />
+    <Compile Include="Assets/Scripts/Common/AssetBundleLoader.cs" />
+    <Compile Include="Assets/Scripts/Scenario/LogText.cs" />
+    <Compile Include="Assets/Scripts/Scenario/LogGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets/Shader/Mask.shader" />

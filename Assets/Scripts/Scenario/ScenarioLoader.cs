@@ -6,31 +6,33 @@ namespace Vampire.Scenario
 {
     public class ScenarioLoader : MonoBehaviour
     {
-        [SerializeField]
-        TextAsset[] scenarioTextAssets;
-        [SerializeField]
-        TextAsset characterNameTextAssets;
+        // シナリオデータ
+        [SerializeField] TextAsset[] _scenarioTextAssets;
+        [SerializeField] TextAsset _characterNameTextAssets;
 
-        int scenarioSelector;
-
-        ScenarioManager indicator;
+        // シナリオを選択する変数
+        int _scenarioSelector;
+        ScenarioManager _indicator;
 
         // Start is called before the first frame update
         void Awake()
         {
-            List<string[]> scenarios = CSVReader.LoadScenario(scenarioTextAssets[scenarioSelector]);
-            List<string[]> characterNameSource = CSVReader.LoadScenario(characterNameTextAssets);
+            // データの読み込み
+            List<string[]> scenarios = CSVReader.LoadScenario(_scenarioTextAssets[_scenarioSelector]);
+            List<string[]> characterNameSource = CSVReader.LoadScenario(_characterNameTextAssets);
             Dictionary<string, string> characterName = new Dictionary<string,string>();
 
+            // データを変数に格納
             foreach(string[] character in characterNameSource)
             {
                 characterName.Add(character[0], character[1]);
             }
 
-            if (TryGetComponent<ScenarioManager>(out indicator))
+            // ScenarioManagerに変数を渡す
+            if (TryGetComponent<ScenarioManager>(out _indicator))
             {
-                indicator.Scenarios = scenarios;
-                indicator.CharacterName = characterName;
+                _indicator.Scenarios = scenarios;
+                _indicator.CharacterName = characterName;
             }
         }
     }
